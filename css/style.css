@@ -1,0 +1,306 @@
+/* ===== Reset ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===== Theme ===== */
+:root{
+  --bg-main: #f3eadf;          /* warmer beige background */
+  --bg-section: #faf6f0;       /* soft off-white, not pure white */
+  --bg-panel: #efe3d1;         /* journal header beige */
+  --bg-panel-hover: #e6d6bf;
+  --accent: #8c5f34;           /* warm brown */
+  --text-main: #1f1a14;        /* strong contrast */
+  --text-muted: #5a4f45;
+  --border: #d2c2ad;
+}
+
+/* ===== Base ===== */
+body{
+  font-family: "Georgia", "Times New Roman", serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.9;
+}
+
+a{ text-decoration: none; color: inherit; }
+
+/* ===== Layout ===== */
+.container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 72px 28px;
+}
+
+/* ===== Navigation ===== */
+nav{
+  background: var(--bg-section);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 22px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-title{
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.nav-links a{
+  margin-left: 28px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.nav-links a:hover{ color: var(--accent); }
+
+/* ===== Typography ===== */
+h1{
+  font-size: 2.6rem;
+  margin-bottom: 26px;
+  letter-spacing: 0.2px;
+}
+
+h2{
+  font-size: 1.6rem;
+  margin: 46px 0 14px;
+}
+
+h3{
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+p{ margin-bottom: 18px; color: var(--text-main); }
+
+/* ===== Intro ===== */
+.section{ margin-bottom: 56px; }
+
+.intro-layout{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.image-placeholder{
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* ===== Journal Accordion ===== */
+.journal-entry{
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.journal-header{
+  padding: 22px 26px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.journal-header:hover{
+  background: var(--bg-panel-hover);
+}
+
+.journal-header span{
+  font-size: 1.3rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.journal-content{
+  display: none;
+  padding: 26px;
+  background: var(--bg-section);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* When open */
+.journal-entry.open .journal-content{ display: block; }
+
+/* helper text styles inside journal */
+.journal-content p{
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* ===== Evidence Deliverables ===== */
+.evidence-group{
+  margin-top: 34px;
+}
+
+.evidence-intro{
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+
+.evidence-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.evidence-slot{
+  background: var(--bg-section);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* Optional: when you add images later */
+.evidence-slot img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* ===== Footer ===== */
+footer{
+  text-align: center;
+  padding: 52px 20px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ===== Journal Smooth Expand + Better Content Colour ===== */
+
+/* Make content look like paper, not white */
+.journal-content{
+  background: #fbf6ee;                 /* warm paper beige */
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  overflow: hidden;
+
+  /* Smooth expand */
+  max-height: 0;
+  padding: 0 26px;                      /* no vertical padding when closed */
+  transition: max-height 280ms ease, padding 280ms ease;
+}
+
+/* When open, expand smoothly */
+.journal-entry.open .journal-content{
+  max-height: 420px;                    /* enough room; adjust if needed */
+  padding: 22px 26px;                   /* padding appears smoothly */
+}
+
+/* Optional: nicer look inside */
+.journal-content{
+  border-left: 4px solid rgba(155,106,59,0.35); /* soft accent */
+}
+
+/* Slightly darker header border for clarity */
+.journal-entry{
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+}
+
+/* ===== Deliverables Gallery ===== */
+.gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.gallery-item{
+  background: var(--bg-section);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.gallery-item img{
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-caption{
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+/* ===== Lightbox ===== */
+.lightbox{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.lightbox img{
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+}
+
+/* ===== Clickable Image Hover Effect ===== */
+.gallery-item img.zoomable{
+  cursor: zoom-in;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.gallery-item:hover img.zoomable{
+  transform: scale(1.03);
+  filter: saturate(1.05);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+}
+
+/* Optional: slightly lift the whole tile */
+.gallery-item{
+  transition: transform 180ms ease;
+}
+
+.gallery-item:hover{
+  transform: translateY(-2px);
+}
+
+/* ===== Lightbox ===== */
+.lightbox{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.lightbox img{
+  max-width: 92%;
+  max-height: 92%;
+  border-radius: 10px;
+}
+
